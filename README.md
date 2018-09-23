@@ -1,6 +1,6 @@
 # tmate server on Alpine Linux
 
-This is an attempt to build a pairing server using `tmate` and Alpine linux. The other implementations used Ubuntu which ships containers upwards of 250MB+. 
+This is an attempt to build a pairing server using `tmate` and Alpine linux. The other implementations I found used Ubuntu which ships containers upwards of 250MB+. 
 ```
 ➜  tmate-alpine-docker git:(master) ✗ docker images
 REPOSITORY                                                 TAG                                        IMAGE ID            CREATED             SIZE
