@@ -1,0 +1,10 @@
+version: '3'
+services:
+  tmate-server:
+    build: .
+    privileged: true
+    environment: 
+      - PORT=2222
+      - HOST=127.0.0.1
+    ports:
+      - "2222:2222"
