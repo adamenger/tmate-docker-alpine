@@ -35,7 +35,6 @@ docker logs -f $(docker ps  | grep tmate | awk '{ print $1}')
 Grab all of the lines beginning with `set` and put them into `~/.tmate.conf` like so:
 
 ```
-Add this to your /root/.tmate.conf file
 set -g tmate-server-host 1.2.3.4
 set -g tmate-server-port 2222
 set -g tmate-server-rsa-fingerprint "your:colon:seperated:fingerprint"
