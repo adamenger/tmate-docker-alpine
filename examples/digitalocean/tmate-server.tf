@@ -16,7 +16,7 @@ write_files:
     
     [Service]
     ExecStartPre=/bin/bash -c "/bin/systemctl set-environment TMATE_IP=$(/sbin/ifconfig eth0 | grep -v 'inet6' | grep inet | awk '{print $2}')"
-    ExecStart=/usr/bin/docker run --rm --privileged -e HOST=$${TMATE_IP} -e PORT=${var.port} -p ${var.port}:${var.port} -v tmate-keys:/etc/tmate-keys --name ${var.name} atomenger/tmate-alpine
+    ExecStart=/usr/bin/docker run --rm --privileged -e HOST=$${TMATE_IP} -e PORT=${var.port} -p ${var.port}:${var.port} -v tmate-keys:/etc/tmate-keys --name ${var.name} atomenger/tmate-alpine:latest
     ExecStop=/usr/bin/docker stop ${var.name}
     ExecStopPost=/usr/bin/docker rm ${var.name}
 runcmd:
