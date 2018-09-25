@@ -13,7 +13,7 @@ I didn't like how other implementations of tmate + docker cached the server keys
 ### Native docker
 
 ```
-$ docker run --privileged -v tmate-keys:/etc/tmate-keys -e PORT=2222 -e HOST=127.0.0.1 -p 2222:2222 4fa9a48243b6
+$ docker run --privileged -v tmate-keys:/etc/tmate-keys -e PORT=2222 -e HOST=127.0.0.1 -p 2222:2222 atomenger/tmate-docker:latest
 ```
 
 ### Docker compose
