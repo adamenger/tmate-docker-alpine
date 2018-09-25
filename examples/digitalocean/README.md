@@ -31,3 +31,16 @@ Or if the above doesn't work, try ssh'ing into your droplet and running:
 ```
 docker logs -f $(docker ps  | grep tmate | awk '{ print $1}')
 ```
+
+Grab all of the lines beginning with `set` and put them into `~/.tmate.conf` like so:
+
+```
+Add this to your /root/.tmate.conf file
+set -g tmate-server-host 1.2.3.4
+set -g tmate-server-port 2222
+set -g tmate-server-rsa-fingerprint "your:colon:seperated:fingerprint"
+set -g tmate-server-ecdsa-fingerprint "your:colon:seperated:fingerprint"
+set -g tmate-identity ""
+```
+
+Once you do this, the next time you invoke `tmate`, it will attempt to make a connection to your newly minted tmate server!
