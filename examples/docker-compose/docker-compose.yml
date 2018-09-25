@@ -1,7 +1,7 @@
 version: '3'
 services:
   tmate-server:
-    build: .
+    image: atomenger/tmate-alpine:latest
     privileged: true
     volumes:
         - tmate-keys:/etc/tmate-keys
