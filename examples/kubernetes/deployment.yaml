@@ -1,0 +1,33 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: tmate
+  labels:
+    app: tmate
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tmate
+  template:
+    metadata:
+      labels:
+        app: tmate
+    spec:
+      containers:
+      - name: tmate
+        image: atomenger/tmate-alpine:latest
+        securityContext:
+          privileged: true
+        env:
+        - name: HOST
+          value: "127.0.0.1"
+        - name: PORT
+          value: "2222"
+        volumeMounts:
+        - mountPath: /etc/tmate-keys
+          name: tmate-keys
+      volumes:
+      - name: tmate-keys
+        persistentVolumeClaim:
+          claimName: tmatekeys-disk
