@@ -1,22 +1,8 @@
 # tmate server on Alpine Linux
 
-This is an attempt to build a pairing server using `tmate` and Alpine linux. The other implementations I found used Ubuntu which ships containers upwards of 250MB+. I've added other features and examples to this repo to make tmate easy to deploy.
-
 > Pairing is caring - Aldous Huxley
 
-```
-➜  tmate-alpine-docker git:(master) ✗ docker images
-REPOSITORY                                                 TAG                                        IMAGE ID            CREATED             SIZE
-tmate-alpine-docker_tmate-server                           latest                                     a18ea818736e        33 minutes ago      266MB
-```
-
-This implementation takes advantage of [multi-stage builds](https://docs.docker.com/develop/develop-images/multistage-build/) and Alpines awesomeness to generate container images just under 60MB:
-
-```
-➜  tmate-alpine-docker git:(master) ✗ docker images
-REPOSITORY                                                 TAG                                        IMAGE ID            CREATED             SIZE
-tmate-alpine-docker_tmate-server                           latest                                     3dad8bbd94fd        6 minutes ago       59.1MB
-```
+This repo is an attempt to build a pairing server using `tmate` and Alpine linux. My main goal is to increase the amount of pairing teams do amongst each other. My implementation takes advantage of [multi-stage builds](https://docs.docker.com/develop/develop-images/multistage-build/) and Alpines awesomeness to generate container images just under 60MB. The other implementations of Tmate and Docker use Ubuntu as a base layer which produces containers upwards of 250MB+. I've tried to collate the tmate + docker approaches here, and have added a few other scripts + examples to make deploying tmate (and pairing) easier.
 
 ## Running
 
@@ -27,7 +13,7 @@ I didn't like how other implementations of tmate + docker cached the server keys
 ### Native docker
 
 ```
-$ sudo docker run --privileged -v tmate-keys:/etc/tmate-keys -p 2222 atomenger/tmate-alpine
+$ docker run --privileged -v tmate-keys:/etc/tmate-keys -e PORT=2222 -e HOST=127.0.0.1 -p 2222:2222 atomenger/tmate-docker:latest
 ```
 
 ### Docker compose
@@ -42,7 +28,7 @@ TODO
 
 ### Digital Ocean
 
-TODO
+See [examples/digitalocean](examples/digitalocean)
 
 ## what's backtrace.patch ??
 
