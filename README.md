@@ -2,7 +2,7 @@
 
 > Pairing is caring - Aldous Huxley
 
-This repo is an attempt to build a pairing server using `tmate` and Alpine linux. My main goal is to increase the amount of pairing teams do amongst each other. My implementation takes advantage of [multi-stage builds](https://docs.docker.com/develop/develop-images/multistage-build/) and Alpines awesomeness to generate container images just under 60MB. The other implementations of Tmate and Docker use Ubuntu as a base layer which produces containers upwards of 250MB+. I've tried to collate the tmate + docker approaches here, and have added a few other scripts + examples to make deploying tmate (and pairing) easier.
+This repo is an attempt to build a pairing server using [tmate](https://tmate.io/) and Alpine linux. My main goal is to increase the amount of pairing teams do amongst each other. My implementation takes advantage of [multi-stage builds](https://docs.docker.com/develop/develop-images/multistage-build/) and Alpines awesomeness to generate container images just under 60MB. The other implementations of Tmate and Docker use Ubuntu as a base layer which produces containers upwards of 250MB+. I've tried to collate the tmate + docker approaches here, and have added a few other scripts + examples to make deploying tmate (and pairing) easier.
 
 ## Running
 
