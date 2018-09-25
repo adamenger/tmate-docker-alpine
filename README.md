@@ -18,6 +18,8 @@ $ docker run --privileged -v tmate-keys:/etc/tmate-keys -e PORT=2222 -e HOST=127
 
 ### Docker compose
 
+See [examples/docker-compose](examples/docker-compose)
+
 ### Kubernetes
 
 TODO
