@@ -8,11 +8,15 @@ This is a fully working deployment of tmate on top of kubernetes **in GKE**. To 
 
 # 1. Create disk
 
+This is our persistent disk where we will write tmate keys and mount to `/etc/tmate-keys`.
+
 ```
 kubectl create -f disk.yaml
 ```
 
 # 2. Create deployment
+
+This is the pod deployment with `replicas` set to 1. We choose deployment for this case so that the pod is recreated if it's terminated or moved for any reason.
 
 ```
 kubectl create -f deployment.yaml
@@ -20,7 +24,7 @@ kubectl create -f deployment.yaml
 
 # 3. Create service
 
-This will create the load balancers
+This will create the load balancers in google and let us connect to our pods over the public internet.
 
 ```
 kubectl create -f service.yaml
@@ -28,7 +32,7 @@ kubectl create -f service.yaml
 
 # 4. Update deployment with load balancer ip
 
-Find and update `HOST` variable in the `deployment.yaml` with the public IP address from your load balancer. You can grab this easily by running `kubectl describe service tmate | grep Ingress`. This will ensure your connection strings have the proper address on the end: `ssh -p2222 dAoXDMSDxiq0zFpl6mxI1SNDg@35.239.184.75`.
+Find and update `HOST` variable in the `deployment.yaml` with the public IP address from your load balancer. You can grab this easily by running `kubectl describe service tmate | grep Ingress`. This will ensure your connection strings have the proper address on the end: `ssh -p2222 dAoXDMSDxiq0zFpl6mxI1SNDg@35.239.184.75`. If you wanted to get crazy, you could `CNAME` your load balancer to something like `tmate.mycoolsite.com` and then deploy that for your og.
 
 Once you've updated the file, update the deployment in k8s:
 
