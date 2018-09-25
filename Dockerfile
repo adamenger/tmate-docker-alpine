@@ -26,19 +26,18 @@ RUN mkdir /src && \
     git clone https://github.com/tmate-io/tmate-slave.git /src/tmate-server && \
     cd /src/tmate-server && \
     git apply /backtrace.patch && \
-    ./create_keys.sh && \
-    mv keys /etc/tmate-keys && \
     ./autogen.sh && \
     ./configure CFLAGS="-D_GNU_SOURCE" && \
     make -j && \
     cp tmate-slave /bin/tmate-slave && \
-    apk del --no-cache build-dependencies && \
-    rm -rf /src
+    apk del --no-cache build-dependencies
 
 FROM alpine:latest
 ENV PORT 2222
 RUN apk add --no-cache ncurses-dev libevent-dev msgpack-c-dev libssh-dev openssh
-ADD message.sh /tmp/message.sh
-COPY --from=0 /bin/tmate-slave /bin/tmate-slave
-COPY --from=0 /etc/tmate-keys /etc/tmate-keys
-CMD /bin/sh /tmp/message.sh && /bin/tmate-slave -k /etc/tmate-keys/ -p $PORT
+ADD entrypoint.sh /bin/entrypoint.sh
+ADD tmate-banner.sh /bin/tmate-banner.sh
+COPY --from=0 /bin/tmate-slave /bin/tmate-server
+COPY --from=0 /src/tmate-server/create_keys.sh /bin/create_keys.sh
+ENTRYPOINT ["/bin/entrypoint.sh"]
+CMD /bin/tmate-server -k /etc/tmate-keys/ -h $HOST -p $PORT

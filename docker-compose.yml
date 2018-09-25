@@ -3,8 +3,12 @@ services:
   tmate-server:
     build: .
     privileged: true
+    volumes:
+        - tmate-keys:/etc/tmate-keys
     environment: 
       - PORT=2222
       - HOST=127.0.0.1
     ports:
       - "2222:2222"
+volumes:
+    tmate-keys:

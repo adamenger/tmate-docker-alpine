@@ -15,7 +15,33 @@ REPOSITORY                                                 TAG                  
 tmate-alpine-docker_tmate-server                           latest                                     3dad8bbd94fd        6 minutes ago       59.1MB
 ```
 
-## backtrace.patch ??
+## Running
+
+### Mounting your keys
+
+I didn't like how other implementations of tmate + docker cached the server keys into the docker container. This implementation will generate them when the container starts if they don't exist, and will use existing ones if it finds them. For this to work, you'll have to mount a volume into the container at `/etc/tmate-keys` so that your keys remain persistent through container restarts.
+
+### Native docker
+
+```
+$ sudo docker run --privileged -v tmate-keys:/etc/tmate-keys -p 2222 atomenger/tmate-alpine
+```
+
+### Docker compose
+
+### Kubernetes
+
+TODO
+
+### ECS Service
+
+TODO
+
+### Digital Ocean
+
+TODO
+
+## what's backtrace.patch ??
 
 Yes, Alpine Linux is missing `backtrace` and a few other constants from `libbacktrace`. To get around this, we patch out the use of it in `tmate` using `backtrace.patch`.  See [this link](https://www.openwall.com/lists/musl/2015/04/09/3) for more information and please feel free to correct me if my understanding of this is off.
 
