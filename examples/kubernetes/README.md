@@ -32,7 +32,7 @@ kubectl create -f service.yaml
 
 # 4. Update deployment with load balancer ip
 
-Find and update `HOST` variable in the `deployment.yaml` with the public IP address from your load balancer. You can grab this easily by running `kubectl describe service tmate | grep Ingress`. This will ensure your connection strings have the proper address on the end: `ssh -p2222 dAoXDMSDxiq0zFpl6mxI1SNDg@35.239.184.75`. If you wanted to get crazy, you could `CNAME` your load balancer to something like `tmate.mycoolsite.com` and then deploy that for your og.
+Find and update `HOST` variable in the `deployment.yaml` with the public IP address from your load balancer. You can grab this easily by running `kubectl describe service tmate | grep Ingress`. This will ensure your connection strings have the proper address on the end: `ssh -p2222 dAoXDMSDxiq0zFpl6mxI1SNDg@35.239.184.75`. If you wanted to get crazy, you could `CNAME` your load balancer to something like `tmate.mycoolsite.com` and then deploy that for your org.
 
 Once you've updated the file, update the deployment in k8s:
 
