@@ -16,6 +16,12 @@ Once you have the ID of your ssh key, create a file named `terraform.tfvars` and
 ssh_keys = ["123456"]
 ```
 
+You may also want to tweak the Image ID. You can grab a list of images from digital ocean using the following curl command:
+
+```
+curl https://api.digitalocean.com/v2/images\?per_page\=999 -H "Authorization: Bearer $DIGITALOCEAN_TOKEN" | jq -r '.images[]'
+```
+
 ### 3. Terraform apply
 
 Now that you've got everything set up, lets try `terraform apply`. After Terraform has done it's job, you should see Terraform output the public IP of the droplet.
